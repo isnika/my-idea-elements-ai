@@ -1,3 +1,70 @@
+# BillScan - AI-Powered Automatic Receipt Scanning Assistant
+
+Final project for the Building AI course
+
+## Summary
+
+BillScan is an application that uses a phone camera and computer vision AI (combined with OCR) to scan receipts and purchase bills, automatically identify key information (date, store name, items, total amount), and enter it directly into an Excel spreadsheet — helping individuals and small business owners manage expenses and revenue quickly without manual data entry.
+
+## Background
+
+For small business owners, restaurants, grocery stores, or individuals managing their own spending, recording purchase and sales receipts into notebooks or Excel files is often time-consuming and error-prone. Many people keep their paper receipts but never find time to consolidate them, leading to a loss of control over cash flow.
+
+* Manually entering data from paper receipts into Excel takes time and is prone to numerical errors
+* Receipts can easily get lost or fade over time if not digitized promptly
+* Small business owners often don't have dedicated accounting staff to handle this task
+
+My personal motivation comes from observing many acquaintances, especially small shop owners, spending hours at the end of the day tallying up a stack of paper receipts. I believe a tool that only requires taking a photo to automatically record data into Excel could save them a great deal of time and reduce errors.
+
+## How is it used?
+
+The user opens the app and takes a photo of a receipt (a purchase receipt, sales invoice, utility bill, etc.). The application will:
+
+1. Recognize and extract the text on the receipt (OCR)
+2. Classify the information: date, store/partner name, list of items, unit prices, total amount
+3. Automatically categorize the entry as an "expense" or "revenue" based on the type of receipt
+4. Write the data directly into a new row in the user's expense-revenue management Excel file
+
+The main target users are small business owners, restaurants, retail shops, freelancers, or anyone who wants to track personal or household spending neatly without needing complex and expensive accounting software.
+
+## Data sources and AI methods
+
+Training data can be sourced from:
+
+* Public receipt recognition datasets such as [SROIE (ICDAR 2019 Receipt OCR)](https://rrc.cvc.uab.es/?ch=13) and [CORD (Consolidated Receipt Dataset)](https://github.com/clovaai/cord)
+* Self-collected receipt images following common formats used in Vietnam (supermarket receipts, handwritten retail receipts, e-invoices) to help the model perform better with domestic formats and fonts
+
+Planned AI approach:
+
+* OCR (Optical Character Recognition) techniques to convert printed/handwritten text on receipts into digital text
+* A structured information extraction model (Named Entity Recognition / Key Information Extraction), potentially leveraging transfer learning from existing models such as LayoutLM to understand receipt layout, not just read text
+* A simple nearest-neighbor classification method, as learned in this course, could be applied to quickly classify receipt types (expense/revenue, by category) as a baseline for comparison with the main model
+
+| Component | Description |
+| --------- | ----------- |
+| Input | Photo of a receipt/bill |
+| Model | OCR + Key Information Extraction (transfer learning from LayoutLM) |
+| Output | Structured data (date, partner, items, amount) written into an Excel file |
+
+## Challenges
+
+* Receipts may be blurry, wrinkled, poorly lit, or follow many different formats, causing OCR misreadings
+* Automatically classifying an entry as "expense" or "revenue" sometimes requires context that is hard for a machine to infer with 100% accuracy, so users need to be able to review and edit before saving
+* Data security and privacy of financial information are important considerations when storing and syncing with Excel/the cloud
+* Effectiveness depends on users photographing receipts as soon as they are generated, rather than letting them pile up
+
+## What next?
+
+* Support automatic generation of summary reports (weekly/monthly income-expense charts) directly in Excel
+* Direct integration with Google Sheets or popular accounting software for multi-device syncing
+* Add a reminder/alert feature when expenses exceed a set budget
+* Additional skills needed: mobile app development, image preprocessing, and Excel/Google Sheets API integration
+
+## Acknowledgments
+
+* Idea inspired by lessons on nearest neighbor and classification from the Building AI course
+* Reference dataset: [SROIE Dataset - ICDAR 2019](https://rrc.cvc.uab.es/?ch=13)
+* Reference dataset: [CORD Dataset by Clova AI](https://github.com/clovaai/cord) / publicly available for research purposes
 # BillScan - Trợ lý quét hóa đơn tự động bằng AI
 
 Final project for the Building AI course
